@@ -1,0 +1,31 @@
+.product-image {      
+  list-style-type: none;
+  width: 260px;
+  padding: 10px;
+  margin: 6px 6px;        
+  border: 1px solid #33B5E5;
+  cursor: pointer;
+} 
+  
+.product-container {
+  margin-top: 64px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+  
+.select-input {
+  margin-bottom: 8px;
+  border-color: #33B5E5;
+  min-width: 100px;
+}
+
+button {
+  background-color: #33e5bc;
+  color: white;
+  border-radius: 5px;
+  border-color: #33e5bc;
+  min-width: 100px;
+}
