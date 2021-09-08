@@ -1,16 +1,16 @@
 {
-    "dev": {
-      "driver": "pg",
-      "host": "localhost",
-      "database": "storefront_dev",
-      "user": "user",
-      "password": "password"
-    },
-    "test": {
-      "driver": "pg",
-      "host": "localhost",
-      "database": "storefront_test",
-      "user": "user",
-      "password": "password"
-    }
+  "dev": {
+    "driver": "pg",
+    "host": {"ENV": "RDS_HOSTNAME"},
+    "database": {"ENV": "RDS_DB_NAME"},
+    "user": {"ENV": "RDS_USERNAME"},
+    "password": {"ENV": "RDS_PASSWORD"}
+  },
+  "test": {
+    "driver": "pg",
+    "host": {"ENV": "RDS_HOSTNAME"},
+    "database": {"ENV": "RDS_DB_NAME"},
+    "user": {"ENV": "POSTGRES_USER"},
+    "password": {"ENV": "RDS_PASSWORD"}
+  }
 }
