@@ -2,8 +2,7 @@ import express, { Request, Response} from 'express'
 import { User, UserStore } from '../models/users'
 import jwt, { Secret } from 'jsonwebtoken'
 import verifyAuthToken from '../middleware/auth'
-import cors from 'cors'
-import bodyParser, { json } from 'body-parser';
+
 const store = new UserStore()
 
 const index = async (_req: Request, res: Response) => {
@@ -12,18 +11,16 @@ const index = async (_req: Request, res: Response) => {
         res.json(users)
     } catch (err) {
         console.log(err)
-    }
-    
+    }   
 }
 
 const show = async (req: Request, res: Response): Promise<void> => {
     try {
-        const users = await store.show(req.body.id)
+        const users = await store.show(req.params.id)
         res.json(users)
     } catch (err) {
         console.log(err)
     }
-    
 }
 
 const create = async (req: Request, res: Response): Promise<void> => {
@@ -36,27 +33,21 @@ const create = async (req: Request, res: Response): Promise<void> => {
     }
     const { TOKEN_SECRET } = process.env;
     try {
-        //@ts-ignore
         const newUser = await store.create(user)
-        var token = jwt.sign({ user: newUser }, TOKEN_SECRET as Secret);
+        let token = jwt.sign({ user: newUser }, TOKEN_SECRET as Secret);
         res.json(token)
     } catch (err) {
         console.log(err)
     }
-    
 }
 
 const authenticate = async (req: Request, res: Response): Promise<void> => {
-    const user: User = {
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        username: req.body.username,
-        password: req.body.password,
-    }
+    const username = req.body.firstName;
+    const password = req.body.password;
     const { TOKEN_SECRET } = process.env;
     try {
-        const oldUser = await store.authenticate(user.username, user.password)
-        var token = jwt.sign({ user: oldUser }, TOKEN_SECRET as Secret);
+        const authUser = await store.authenticate(username, password)
+        let token = jwt.sign({ user: authUser }, TOKEN_SECRET as Secret);
         res.json(token)
     } catch(error) {
         res.status(401)
@@ -64,12 +55,11 @@ const authenticate = async (req: Request, res: Response): Promise<void> => {
     }
   }
 
-var jsonParser = bodyParser.json()
-
 const users_routes = (app: express.Router): void =>  {
+    app.post('/auth', authenticate);
     app.get('/users', verifyAuthToken, index);
     app.get('/users/:id', verifyAuthToken, show); 
-    app.post('/users', jsonParser, create);
+    app.post('/users', create);
 }
 
 export default users_routes;
