@@ -21,7 +21,8 @@ describe("OrderProduct Model", () => {
     await productStore.create({
       name: 'book',
       price: 10,
-      category: 'fiction'
+      url: 'www.url.com',
+      description: 'this is a description'
     });
   })
 

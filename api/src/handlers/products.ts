@@ -28,21 +28,21 @@ const create = async (req: Request, res: Response): Promise<void> => {
     const product: Product = {
         name: request.name,
         price: request.price,
-        category: request.category,
+        url: request.url,
+        description: request.description
     }
     const { TOKEN_SECRET } = process.env;
     try {
         const newProduct = await store.create(product)
-        let token = jwt.sign({ product: newProduct }, TOKEN_SECRET as Secret);
         res.json(newProduct)
     } catch (err) {
         console.log(err)
     }
-    
 }
 
 const products_routes = (app: express.Router): void =>  {
-    app.get('/products', verifyAuthToken, index);
+    // app.get('/products', verifyAuthToken, index);
+    app.get('/products', index)
     app.get('/products/:id', verifyAuthToken, show); 
     app.post('/products', verifyAuthToken, create); 
 }
