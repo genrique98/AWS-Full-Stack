@@ -15,8 +15,8 @@ jobs:
       - node/install
       - checkout
       # - aws-cli/setup
-      - aws-s3/setup
-      - aws-elastic-beanstalk/setup
+      # - aws-s3/setup
+      # - aws-elastic-beanstalk/setup
       - run:
           name: Front-End Install
           command: |
