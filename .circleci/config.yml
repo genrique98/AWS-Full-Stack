@@ -3,7 +3,9 @@ version: 2.1
 
 orbs:
   node: circleci/node@4.1
-  # aws-cli:
+  # aws-cli: circleci/aws-cli@2.0.3
+  aws-s3: circleci/aws-s3@3.0.0
+  aws-elastic-beanstalk: circleci/aws-elastic-beanstalk@2.0.1
 
 jobs:
   build:
@@ -13,6 +15,8 @@ jobs:
       - node/install
       - checkout
       # - aws-cli/setup
+      - aws-s3/setup
+      - aws-elastic-beanstalk/setup
       - run:
           name: Front-End Install
           command: |
@@ -28,7 +32,17 @@ jobs:
       - run:
           name: Back-End Build
           command: |
-            npm run backend:build  
+            npm run backend:build 
+      - run:
+          name: Front-End Deploy
+          command: |
+            npm run frontend:deploy 
+      - run:
+          name: Back-End Deploy
+          command: |
+            npm run backend:deploy 
+
+
 # workflows:
 #   sample:
 #     jobs:
