@@ -10,7 +10,8 @@
     "nodemon": "nodemon src/index.ts",
     "config": "node -r dotenv/config ./dist/database.js",
     "migrate": "db-migrate --env dev up",
-    "test": "ENV=test db-migrate --env test up && jasmine-ts && db-migrate db:drop test"
+    "test": "ENV=test db-migrate --env test up && jasmine-ts && db-migrate db:drop test",
+    "deploy": "chmod +x ./bin/deploy.sh && ./bin/deploy.sh"
   },
   "author": "Gabriel Ramirez",
   "license": "ISC",

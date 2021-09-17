@@ -2,8 +2,10 @@
     "scripts": {
         "frontend:install": "cd frontend && npm install",
         "frontend:build": "cd frontend && npm run build",
+        "frontend:deploy": "cd frontend && npm run deploy",
         "backend:install": "cd api && npm install",
-        "backend:build": "cd api && npm run build"
+        "backend:build": "cd api && npm run build",
+        "backend:deploy": "cd api && npm run deploy"
     },
     "devDependencies": {}
 }
