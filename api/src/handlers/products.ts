@@ -44,7 +44,8 @@ const products_routes = (app: express.Router): void =>  {
     // app.get('/products', verifyAuthToken, index);
     app.get('/products', index)
     app.get('/products/:id', verifyAuthToken, show); 
-    app.post('/products', verifyAuthToken, create); 
+    // app.post('/products', verifyAuthToken, create); 
+    app.post('/products', create)
 }
 
 export default products_routes;
