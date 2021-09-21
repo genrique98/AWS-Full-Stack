@@ -1,17 +1,22 @@
 {
   "name": "storefront_backend",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Storefront using Express and Postgres",
   "main": "index.js",
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=7.0.0"
+  },
   "scripts": {
-    "start": "node dist/index.js",
-    "build": "npx tsc",
-    "watch": "tsc-watch --onSuccess 'node ./dist/index.js'",
+    "start": "node ./index.js",
+    "build-ts": "npx tsc",
+    "watch": "tsc-watch --onSuccess 'node ./index.js'",
     "nodemon": "nodemon src/index.ts",
-    "config": "node -r dotenv/config ./dist/database.js",
     "migrate": "db-migrate --env dev up",
     "test": "ENV=test db-migrate --env test up && jasmine-ts && db-migrate db:drop test",
-    "deploy": "chmod +x ./bin/deploy.sh && ./bin/deploy.sh"
+    "deploy": "chmod +x ./bin/deploy.sh && ./bin/deploy.sh",
+    "clean": "rm -rf dist/ || true",
+    "build": "npm run clean && tsc && cp database.json dist/database.json && cp .npmrc dist/.npmrc && cp package.json dist/package.json && cd dist && zip -r Archive.zip . && cd .."
   },
   "author": "Gabriel Ramirez",
   "license": "ISC",
@@ -22,6 +27,7 @@
     "cors": "^2.8.5",
     "db-migrate": "^0.11.12",
     "db-migrate-pg": "^1.2.2",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "pg": "^8.5.1",
@@ -37,7 +43,6 @@
     "@types/node": "^15.12.4",
     "@types/pg": "^8.6.0",
     "@types/supertest": "^2.0.11",
-    "dotenv": "^10.0.0",
     "jasmine": "^3.6.4",
     "jasmine-spec-reporter": "^7.0.0",
     "jasmine-ts": "^0.3.0",
