@@ -2,8 +2,8 @@
 
 CREATE TABLE products (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(150) NOT NULL,
+    name VARCHAR(100) NOT NULL,
     price INTEGER NOT NULL,
-    url VARCHAR(100) NOT NULL,
-    description VARCHAR(100) NOT NULL
+    url VARCHAR(200) NOT NULL,
+    description VARCHAR(200) NOT NULL
 );
