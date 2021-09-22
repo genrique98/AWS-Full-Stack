@@ -20,7 +20,8 @@ describe("Product Endpoint", () => {
         {
             name: 'book',
             price: 10,
-            category: 'fiction'
+            url: 'fiction',
+            description: 'description'
         }
     ).set('Authorization', token);
 
