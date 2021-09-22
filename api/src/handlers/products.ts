@@ -31,10 +31,20 @@ const create = async (req: Request, res: Response): Promise<void> => {
         url: request.url,
         description: request.description
     }
-    const { TOKEN_SECRET } = process.env;
     try {
         const newProduct = await store.create(product)
         res.json(newProduct)
+    } catch (err) {
+        res.json({ err })
+        console.log(err)
+    }
+}
+
+const deleteP = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const productId = await store.delete(req.body.id)
+        // res.json(productId)
+        res.json({productId})
     } catch (err) {
         console.log(err)
     }
@@ -46,6 +56,7 @@ const products_routes = (app: express.Router): void =>  {
     app.get('/products/:id', verifyAuthToken, show); 
     // app.post('/products', verifyAuthToken, create); 
     app.post('/products', create)
+    app.delete('/products', deleteP)
 }
 
 export default products_routes;

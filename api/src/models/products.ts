@@ -45,7 +45,19 @@ export class ProductStore {
 
             return newProduct
         } catch (err) {
-            throw new Error(`Could not add user ${product.name}. Error: ${err}`);
+            throw new Error(`Could not add product ${product.name}. Error: ${err}`);
+        }
+    }
+
+    async delete(id: string): Promise<void> {
+        try {
+            const conn = await Client.connect();
+            const sql = 'DELETE FROM products WHERE id=($1)';
+            await conn.query(sql, [id]);
+            conn.release();
+
+        } catch (err) {
+            throw new Error(`Could not delete product ${id}. Error: ${err}`);
         }
     }
 }
