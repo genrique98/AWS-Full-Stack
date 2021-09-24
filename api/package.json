@@ -13,7 +13,8 @@
     "watch": "tsc-watch --onSuccess 'node ./index.js'",
     "nodemon": "nodemon src/index.ts",
     "migrate": "db-migrate --env dev up",
-    "test": "ENV=test db-migrate --env test up && jasmine-ts && db-migrate db:drop test",
+    "migrate-down": "db-migrate --env dev down",
+    "test": "jasmine-ts",
     "deploy": "chmod +x ./bin/deploy.sh && ./bin/deploy.sh",
     "clean": "rm -rf dist/ || true",
     "build": "npm run clean && tsc && cp database.json dist/database.json && cp .npmrc dist/.npmrc && cp package.json dist/package.json && cd dist && zip -r Archive.zip . && cd .."
@@ -21,7 +22,6 @@
   "author": "Gabriel Ramirez",
   "license": "ISC",
   "dependencies": {
-    "aws-sdk": "^2.981.0",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
