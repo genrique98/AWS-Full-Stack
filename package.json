@@ -2,9 +2,11 @@
     "scripts": {
         "frontend:install": "cd frontend && npm install",
         "frontend:build": "cd frontend && npm run build",
+        "frontend:test": "cd frontend && npm run test",
         "frontend:deploy": "cd frontend && npm run deploy",
         "backend:install": "cd api && npm install",
         "backend:build": "cd api && npm run build",
+        "backend:test": "cd api && npm run test",
         "backend:deploy": "cd api && npm run deploy"
     },
     "devDependencies": {}

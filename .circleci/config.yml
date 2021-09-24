@@ -1,10 +1,8 @@
-# This config is equivalent to both the '.circleci/extended/orb-free.yml' and the base '.circleci/config.yml'
 version: 2.1
 
 orbs:
   node: circleci/node@4.1
   aws-cli: circleci/aws-cli@2.0.3
-  # aws-s3: circleci/aws-s3@3.0.0
   aws-elastic-beanstalk: circleci/aws-elastic-beanstalk@2.0.1
 
 jobs:
@@ -15,33 +13,47 @@ jobs:
       - node/install
       - checkout
       - aws-cli/setup
-      # - aws-s3/setup
       - aws-elastic-beanstalk/setup
+      # Install all dependencies [frontend]
       - run:
           name: Front-End Install
           command: |
             npm run frontend:install
+      # Install all dependencies [backend]
       - run:
           name: Back-End Install
           command: |
             npm run backend:install
+      # Build application [frontend]
       - run:
           name: Front-End Build
           command: |
             npm run frontend:build
+      # Build application [backend]
       - run:
           name: Back-End Build
           command: |
-            npm run backend:build 
+            npm run backend:build
+      # Run tests [frontend]
+      - run:
+          name: Front-End Test
+          command: |
+            npm run frontend:test
+      # Run tests [backend]
+      - run:
+          name: Back-End Test
+          command: |
+            npm run backend:test 
+      # Deploy build folder to S3 [frontend]
       - run:
           name: Front-End Deploy
           command: |
             npm run frontend:deploy 
+      # Deploy build folder to Elastic Beanstalk [backend]
       - run:
           name: Back-End Deploy
           command: |
             npm run backend:deploy 
-
 
 # workflows:
 #   sample:
