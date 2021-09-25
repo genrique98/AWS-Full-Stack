@@ -29,13 +29,13 @@ const create = async (req: Request, res: Response): Promise<void> => {
         name: request.name,
         price: request.price,
         url: request.url,
-        description: request.description
+        description: request.description,
     }
     try {
-        const newProduct = await store.create(product)
+        const newProduct = await store.create(product);
         res.json(newProduct)
     } catch (err) {
-        res.json({ err })
+        res.json({error: err})
         console.log(err)
     }
 }
@@ -51,10 +51,8 @@ const deleteP = async (req: Request, res: Response): Promise<void> => {
 }
 
 const products_routes = (app: express.Router): void =>  {
-    // app.get('/products', verifyAuthToken, index);
     app.get('/products', index)
     app.get('/products/:id', verifyAuthToken, show); 
-    // app.post('/products', verifyAuthToken, create); 
     app.post('/products', create)
     app.delete('/products', deleteP)
 }
