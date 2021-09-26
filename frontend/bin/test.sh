@@ -1,3 +1,4 @@
-env | grep CHROME_BIN
-CHROME_BIN=/usr/bin/google-chrome 
-karma start --single-run
+# env | grep CHROME_BIN
+# CHROME_BIN=/usr/bin/google-chrome 
+# ng test
+which google-chrome 
