@@ -4,6 +4,7 @@ orbs:
   node: circleci/node@4.1
   aws-cli: circleci/aws-cli@2.0.3
   aws-elastic-beanstalk: circleci/aws-elastic-beanstalk@2.0.1
+  browser-tools: circleci/browser-tools@1.2.2
 
 jobs:
   build:
@@ -14,6 +15,7 @@ jobs:
       - checkout
       - aws-cli/setup
       - aws-elastic-beanstalk/setup
+      - browser-tools/install-chrome
       # Install all dependencies [frontend]
       - run:
           name: Front-End Install
