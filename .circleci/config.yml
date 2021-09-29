@@ -10,9 +10,6 @@ jobs:
   build:
     docker:
       - image: "cimg/base:stable"
-    filters:
-      branches:
-        only: master
     steps:
       - node/install
       - checkout
@@ -60,11 +57,10 @@ jobs:
           command: |
             npm run backend:deploy 
 
-# workflows:
-#   sample:
-#     jobs:
-#       - node/test:
-#           version: '15.1'
-#           # This is the node version to use for the `cimg/node` tag
-#           # Relevant tags can be found on the CircleCI Developer Hub
-#           # https://circleci.com/developer/images/image/cimg/node
+workflows:
+  pipeline:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only: master
