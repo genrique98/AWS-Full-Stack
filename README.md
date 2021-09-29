@@ -2,7 +2,7 @@
 
 # Frontend Link
 ## S3
-https://bucketgenrique.s3.us-west-1.amazonaws.com/
+http://bucketgenrique.s3-website-us-west-1.amazonaws.com/
 
 # Backend Link
 ## Elastic Beanstalk
