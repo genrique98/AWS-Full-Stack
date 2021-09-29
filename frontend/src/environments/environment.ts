@@ -3,9 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: true,
+  production: false,
   appName: 'angular-storefront-app',
-  // apiHost: 'http://backend-env.eba-gpma9uyx.us-west-1.elasticbeanstalk.com/products'
 };
 
 /*
