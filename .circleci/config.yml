@@ -10,6 +10,9 @@ jobs:
   build:
     docker:
       - image: "cimg/base:stable"
+    filters:
+      branches:
+        only: master
     steps:
       - node/install
       - checkout
